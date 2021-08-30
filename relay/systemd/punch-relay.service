@@ -1,0 +1,23 @@
+# /usr/local/bin/punch/relay
+[Unit]
+Description=Punch Relay
+After=network.target
+
+[Service]
+Environment="ASPNETCORE_ENVIRONMENT=Production"
+User=punch
+Group=punch
+Type=notify
+WorkingDirectory=/usr/local/bin/punch/
+ExecStart=/usr/local/bin/punch/relay
+Restart=always
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+
+ProtectSystem=strict
+NoNewPrivileges=true
+RestrictRealtime=true
+PrivateDevices=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
